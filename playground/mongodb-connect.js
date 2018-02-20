@@ -2,7 +2,7 @@
  * @Author: Chandan Kumar 
  * @Date: 2018-02-19 11:11:38 
  * @Last Modified by: ckumar2@hallmark.com
- * @Last Modified time: 2018-02-19 15:39:45
+ * @Last Modified time: 2018-02-20 10:41:11
  */
 const MongoClient = require('mongodb').MongoClient;
 
@@ -85,7 +85,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
         console.log('Not connect ');
 
     } else {
-        console.log('Connected successfully');
+        console.log('Connected successfully'); //testing
 
         db.collection('Chandan').find({ complete: false }).toArray().then((result) => {
 
