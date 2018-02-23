@@ -2,9 +2,18 @@
  * @Author: Chandan Kumar 
  * @Date: 2018-02-19 11:11:38 
  * @Last Modified by: ckumar2@hallmark.com
- * @Last Modified time: 2018-02-20 10:41:11
+ * @Last Modified time: 2018-02-22 11:14:05
  */
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
+
+
+
+
+
+
+
+
 
 
 
@@ -76,30 +85,103 @@ const MongoClient = require('mongodb').MongoClient;
 // });
 
 
+//Finding data
+// MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
+//     //  var db = client.db('TodoApp');
+//     var db = client.db('TodoApp');
+
+//     if (err) {
+//         console.log('Not connect ');
+
+//     } else {
+//         console.log('Connected successfully'); //testing
+
+//         db.collection('Chandan').find({ complete: false }).toArray().then((result) => {
+
+//             console.log(JSON.stringify(result, undefined, 2));
+
+
+//         }, (err) => {
+//             console.log('Unable to fetch data');
+
+
+//         })
+
+//         client.close();
+
+//     }
+
+// });
+
+
+// MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
+
+//     var db = client.db('TodoApp');
+
+//     if (err) {
+//         console.log('Connection fail');
+
+//     } else {
+//         console.log('Connection successfully');
+//         //deleteMAny
+
+//         //Deleteone
+
+//         //Findone and Delete
+
+
+
+//         db.collection('Chandan').findOneAndDelete({ _id: new ObjectId('5a8b40dc32d87332c41da76b') }, (err, result) => {
+
+//             if (err) {
+//                 console.log(err);
+
+//             } else {
+//                 console.log(result);
+//             }
+
+
+
+//         });
+
+//     }
+
+// })
+
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
-    //  var db = client.db('TodoApp');
+
     var db = client.db('TodoApp');
 
     if (err) {
-        console.log('Not connect ');
+        console.log('Connection fail');
 
     } else {
-        console.log('Connected successfully'); //testing
+        console.log('Connection successfully');
+        //deleteMAny
 
-        db.collection('Chandan').find({ complete: false }).toArray().then((result) => {
+        //Deleteone
 
-            console.log(JSON.stringify(result, undefined, 2));
-
-
-        }, (err) => {
-            console.log('Unable to fetch data');
+        //Findone and update
 
 
-        })
 
-        client.close();
+        db.collection('Chandan').findOneAndUpdate({ _id: new ObjectId('5a8ef6bcfdabf626004e1fdd') }, { $set: { complete: false } },
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+
+                } else {
+                    console.log(result);
+                    console.log('Done successfully');
+
+                }
+
+
+
+            }
+        );
 
     }
 
-});
+})
