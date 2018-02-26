@@ -2,7 +2,7 @@
  * @Author: Chandan Kumar 
  * @Date: 2018-02-22 11:29:19 
  * @Last Modified by: ckumar2@hallmark.com
- * @Last Modified time: 2018-02-23 12:52:39
+ * @Last Modified time: 2018-02-26 15:01:29
  */
 var { mongoose } = require('./db/mongoose');
 var { todo } = require('./model/todo');
@@ -10,6 +10,7 @@ var { user } = require('./model/user');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { ObjectID } = require('mongodb');
+var _ = require('lodash');
 
 //EXPRESS
 var app = express();
@@ -56,9 +57,10 @@ app.get('/todo/:todoId', (req, res) => {
         //find
         todo.findById(req.params.todoId).then((doc) => {
             res.send(doc);
-
+            console.log(doc);
 
         }).catch((e) => {
+            console.log(e);
 
         })
 
@@ -74,6 +76,13 @@ app.get('/todo/:todoId', (req, res) => {
 
 });
 
+
+// app.post('/users').post((req, rep) => {
+//     var body = _.pick(req.body, ['email', 'password']);
+
+//     var user = new user(body);
+
+// });
 
 //Listener
 app.listen(3000, () => {
